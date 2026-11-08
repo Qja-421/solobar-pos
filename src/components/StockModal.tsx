@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { X, Package, Plus, Minus, AlertTriangle, Search, Check, Trash2, Edit3 } from 'lucide-react';
+import { X, Package, Plus, AlertTriangle, Search, Trash2 } from 'lucide-react';
 import { useSoloBarStore } from '../store/posStore';
 import { formatMoney } from '../utils/security';
-import type { Product, ProductCategory } from '../types';
+import type { ProductCategory } from '../types';
 
 interface StockModalProps {
   isOpen: boolean;
@@ -10,7 +10,7 @@ interface StockModalProps {
 }
 
 export const StockModal: React.FC<StockModalProps> = ({ isOpen, onClose }) => {
-  const { products, addProduct, updateProduct, deleteProduct, adjustStock, settings } = useSoloBarStore();
+  const { products, addProduct, deleteProduct, adjustStock, settings } = useSoloBarStore();
 
   const [search, setSearch] = useState('');
   const [onlyLowStock, setOnlyLowStock] = useState(false);

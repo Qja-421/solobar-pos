@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   X, Banknote, Smartphone, CreditCard, UserCheck, 
-  CheckCircle2, Printer, AlertCircle, ArrowRight 
+  Printer, AlertCircle, ArrowRight 
 } from 'lucide-react';
 import { useSoloBarStore } from '../store/posStore';
 import { formatMoney } from '../utils/security';

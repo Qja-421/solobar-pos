@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShoppingCart, Trash2, Plus, Minus, User, Tag, ArrowRight, Sparkles } from 'lucide-react';
+import { ShoppingCart, Trash2, Plus, Minus, User, Tag, ArrowRight } from 'lucide-react';
 import { useSoloBarStore } from '../store/posStore';
 import { formatMoney } from '../utils/security';
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, DollarSign, Lock, Unlock, AlertTriangle, CheckCircle2, FileText, ArrowRight } from 'lucide-react';
+import { X, DollarSign, Lock, Unlock, AlertTriangle } from 'lucide-react';
 import { useSoloBarStore } from '../store/posStore';
 import { formatMoney } from '../utils/security';
 

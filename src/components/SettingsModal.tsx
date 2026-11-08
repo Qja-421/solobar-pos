@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Settings, ShieldCheck, Printer, Save, RefreshCw, Check } from 'lucide-react';
+import { X, Settings, ShieldCheck, Printer, Save, Check } from 'lucide-react';
 import { useSoloBarStore } from '../store/posStore';
 import { hashPin } from '../utils/security';
 

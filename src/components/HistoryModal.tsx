@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, History, Printer, RotateCcw, CheckCircle2, User, Clock, AlertCircle } from 'lucide-react';
+import { X, History, Printer, RotateCcw, Clock } from 'lucide-react';
 import { useSoloBarStore } from '../store/posStore';
 import { formatMoney } from '../utils/security';
 

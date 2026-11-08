@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Wine, Clock, DollarSign, Package, History, Settings, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Wine, Clock, DollarSign, Package, History, Settings } from 'lucide-react';
 import { useSoloBarStore } from '../store/posStore';
 import { formatMoney } from '../utils/security';
 

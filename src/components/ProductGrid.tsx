@@ -1,8 +1,7 @@
 import React, { useMemo } from 'react';
-import { Search, Plus, AlertTriangle, Wine, Sparkles } from 'lucide-react';
+import { Search, Plus, Wine, Sparkles } from 'lucide-react';
 import { useSoloBarStore } from '../store/posStore';
 import { formatMoney } from '../utils/security';
-import type { Product } from '../types';
 
 export const ProductGrid: React.FC = () => {
   const { products, selectedCategory, searchQuery, setSearchQuery, addToCart, settings } = useSoloBarStore();
