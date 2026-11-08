@@ -12,7 +12,7 @@ import { OnboardingPage } from './pages/OnboardingPage';
 import { SuperAdminPage } from './pages/SuperAdminPage';
 import { useSoloBarStore } from './store/posStore';
 import { useAppStore } from './store/appStore';
-import { ShoppingCart, Crown } from 'lucide-react';
+import { ShoppingCart, Crown, ArrowRight } from 'lucide-react';
 import { formatMoney } from './utils/security';
 
 export function App() {
@@ -32,7 +32,7 @@ export function App() {
   const subtotal = cart.reduce((acc, item) => acc + item.total, 0);
   const finalTotal = Math.max(0, subtotal - cartDiscount);
 
-  // Page Super Admin (accessible via ?superadmin dans l'URL)
+  // Page Super Admin (accessible via ?superadmin dans l'URL ou bouton)
   const isSuperAdminRoute = typeof window !== 'undefined' && window.location.search.includes('superadmin');
   if (isSuperAdminRoute || showSuperAdmin) {
     return <SuperAdminPage />;
@@ -44,8 +44,8 @@ export function App() {
   }
 
   return (
-    <div className="flex flex-col h-screen w-screen overflow-hidden bg-slate-950 text-slate-100 font-sans">
-      {/* Barre Supérieure */}
+    <div className="flex flex-col h-screen w-screen overflow-hidden bg-slate-950 text-slate-100 font-sans bg-ambient-mesh">
+      {/* Barre Supérieure Glassmorphic */}
       <Header
         onOpenSession={() => setIsSessionOpen(true)}
         onOpenStock={() => setIsStockOpen(true)}
@@ -56,9 +56,9 @@ export function App() {
       {/* Corps Principal */}
       <div className="flex-1 flex overflow-hidden">
         {/* Colonne de Gauche : Catalogue Produits & Catégories */}
-        <main className="flex-1 flex flex-col p-3 md:p-4 min-w-0 overflow-hidden">
+        <main className="flex-1 flex flex-col p-3 md:p-5 min-w-0 overflow-hidden">
           {/* Sélecteur de Catégories */}
-          <div className="mb-3">
+          <div className="mb-3.5">
             <CategoryBar
               selectedCategory={selectedCategory}
               onSelectCategory={setSelectedCategory}
@@ -76,37 +76,45 @@ export function App() {
       </div>
 
       {/* Barre Flottante Mobile pour le Panier */}
-      <div className="lg:hidden p-3 bg-slate-900 border-t border-slate-800 flex items-center justify-between shadow-2xl">
+      <div className="lg:hidden p-3.5 bg-slate-950/90 backdrop-blur-xl border-t border-white/10 flex items-center justify-between gap-3 shadow-2xl">
         <button
           onClick={() => setMobileCartOpen(true)}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 text-slate-200 text-xs font-bold"
+          className="flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-slate-900 border border-white/10 text-slate-200 text-xs font-bold active:scale-95 transition"
         >
-          <ShoppingCart className="w-4 h-4 text-amber-400" />
-          <span>Voir Panier ({totalItemsCount})</span>
+          <div className="relative">
+            <ShoppingCart className="w-4 h-4 text-amber-400" />
+            {totalItemsCount > 0 && (
+              <span className="absolute -top-1.5 -right-2 w-4 h-4 bg-amber-500 text-slate-950 text-[10px] font-black rounded-full flex items-center justify-center">
+                {totalItemsCount}
+              </span>
+            )}
+          </div>
+          <span>Voir Panier</span>
         </button>
 
         <button
           onClick={() => setIsPaymentOpen(true)}
           disabled={cart.length === 0}
-          className={`px-5 py-2.5 rounded-xl text-xs font-black transition active:scale-95 ${
+          className={`flex-1 py-3 px-4 rounded-2xl text-xs font-black transition active:scale-98 flex items-center justify-center gap-2 ${
             cart.length > 0
-              ? 'bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-lg shadow-emerald-500/20'
-              : 'bg-slate-800 text-slate-500 cursor-not-allowed'
+              ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 shadow-lg shadow-emerald-500/20'
+              : 'bg-slate-900 border border-white/5 text-slate-500 cursor-not-allowed'
           }`}
         >
-          {cart.length > 0 ? `Encaisser • ${formatMoney(finalTotal, settings.currency)}` : 'Panier vide'}
+          <span>{cart.length > 0 ? `Payer • ${formatMoney(finalTotal, settings.currency)}` : 'Panier vide'}</span>
+          {cart.length > 0 && <ArrowRight className="w-3.5 h-3.5 stroke-[3]" />}
         </button>
       </div>
 
       {/* Drawer Mobile pour le panier */}
       {mobileCartOpen && (
-        <div className="lg:hidden fixed inset-0 z-40 bg-slate-950/80 backdrop-blur-sm flex justify-end">
-          <div className="w-full max-w-sm h-full bg-slate-900 shadow-2xl flex flex-col">
-            <div className="p-3 border-b border-slate-800 flex justify-between items-center">
-              <span className="font-bold text-sm text-white">Panier Mobile</span>
+        <div className="lg:hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex justify-end animate-in fade-in duration-200">
+          <div className="w-full max-w-sm h-full bg-slate-950 shadow-2xl flex flex-col border-l border-white/10">
+            <div className="p-3.5 border-b border-white/10 flex justify-between items-center bg-slate-900/60">
+              <span className="font-extrabold text-sm text-white">Commande Mobile</span>
               <button
                 onClick={() => setMobileCartOpen(false)}
-                className="text-slate-400 hover:text-white text-xs font-bold px-2 py-1 bg-slate-800 rounded-lg"
+                className="text-slate-400 hover:text-white text-xs font-bold px-3 py-1.5 bg-slate-800 rounded-xl"
               >
                 Fermer
               </button>
@@ -127,9 +135,9 @@ export function App() {
       <button
         onClick={() => setShowSuperAdmin(true)}
         title="Accès Super Administrateur"
-        className="fixed bottom-3 left-3 p-2 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-800/80 text-slate-700 hover:text-purple-400 transition z-50"
+        className="fixed bottom-3 left-3 p-2.5 rounded-2xl bg-slate-900/80 hover:bg-slate-800 border border-white/10 text-slate-600 hover:text-purple-400 transition shadow-lg z-40 group"
       >
-        <Crown className="w-4 h-4" />
+        <Crown className="w-4 h-4 group-hover:scale-110 transition-transform" />
       </button>
 
       {/* Modales */}

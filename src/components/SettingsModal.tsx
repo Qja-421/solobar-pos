@@ -47,26 +47,26 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
     setTimeout(() => {
       setSavedSuccess(false);
       onClose();
-    }, 800);
+    }, 700);
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full max-h-[85vh] shadow-2xl overflow-hidden flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="bg-slate-900/95 border border-white/10 rounded-3xl max-w-lg w-full max-h-[85vh] shadow-2xl overflow-hidden flex flex-col backdrop-blur-xl">
         {/* En-tête */}
-        <div className="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/50">
+        <div className="p-4 border-b border-white/10 flex items-center justify-between bg-slate-950/60">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-slate-800 text-slate-200 flex items-center justify-center">
-              <Settings className="w-4 h-4" />
+            <div className="w-9 h-9 rounded-xl bg-slate-800 border border-white/5 text-slate-200 flex items-center justify-center">
+              <Settings className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base font-black text-white">Paramètres Établissement</h3>
-              <p className="text-[11px] text-slate-400">Configuration générale et impression</p>
+              <h3 className="text-base font-black text-white tracking-tight">Paramètres Établissement</h3>
+              <p className="text-[11px] text-slate-400">Configuration générale et impression thermique</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition"
+            className="w-8 h-8 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition border border-white/5 active:scale-95"
           >
             <X className="w-4 h-4" />
           </button>
@@ -81,7 +81,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
               required
               value={barName}
               onChange={(e) => setBarName(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white font-bold focus:outline-none focus:border-amber-500"
+              className="w-full bg-slate-950 border border-white/10 rounded-xl px-3.5 py-2.5 text-white font-bold focus:outline-none focus:border-amber-500"
             />
           </div>
 
@@ -92,7 +92,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
               value={subTitle}
               onChange={(e) => setSubTitle(e.target.value)}
               placeholder="Bar • Cave • Lounge"
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-500"
+              className="w-full bg-slate-950 border border-white/10 rounded-xl px-3.5 py-2 text-white focus:outline-none focus:border-amber-500"
             />
           </div>
 
@@ -103,7 +103,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
                 type="text"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-500"
+                className="w-full bg-slate-950 border border-white/10 rounded-xl px-3 py-2 text-white font-mono focus:outline-none focus:border-amber-500"
               />
             </div>
             <div>
@@ -113,7 +113,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
                 value={currency}
                 onChange={(e) => setCurrency(e.target.value)}
                 placeholder="FCFA, EUR, USD..."
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white font-mono focus:outline-none focus:border-amber-500"
+                className="w-full bg-slate-950 border border-white/10 rounded-xl px-3 py-2 text-white font-mono focus:outline-none focus:border-amber-500"
               />
             </div>
           </div>
@@ -124,13 +124,13 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
               type="text"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-500"
+              className="w-full bg-slate-950 border border-white/10 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-500"
             />
           </div>
 
           {/* Ticket de caisse */}
-          <div className="pt-3 border-t border-slate-800 space-y-3">
-            <h4 className="font-extrabold text-amber-400 text-xs flex items-center gap-1.5">
+          <div className="pt-3 border-t border-white/10 space-y-3">
+            <h4 className="font-black text-amber-400 text-xs flex items-center gap-1.5 uppercase tracking-wide">
               <Printer className="w-3.5 h-3.5" />
               <span>Personnalisation du Ticket Thermique</span>
             </h4>
@@ -141,7 +141,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
                 type="text"
                 value={receiptHeader}
                 onChange={(e) => setReceiptHeader(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-1.5 text-white focus:outline-none"
+                className="w-full bg-slate-950 border border-white/10 rounded-xl px-3 py-2 text-white focus:outline-none"
               />
             </div>
 
@@ -151,31 +151,31 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
                 type="text"
                 value={receiptFooter}
                 onChange={(e) => setReceiptFooter(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-1.5 text-white focus:outline-none"
+                className="w-full bg-slate-950 border border-white/10 rounded-xl px-3 py-2 text-white focus:outline-none"
               />
             </div>
 
-            <label className="flex items-center gap-2 cursor-pointer pt-1">
+            <label className="flex items-center gap-2.5 cursor-pointer pt-1 select-none">
               <input
                 type="checkbox"
                 checked={autoPrintReceipt}
                 onChange={(e) => setAutoPrintReceipt(e.target.checked)}
-                className="rounded border-slate-700 bg-slate-950 text-amber-500 focus:ring-0 w-4 h-4"
+                className="rounded border-white/20 bg-slate-950 text-amber-500 focus:ring-0 w-4 h-4 cursor-pointer"
               />
-              <span className="text-slate-300 font-semibold">
+              <span className="text-slate-300 font-bold text-xs">
                 Impression automatique du ticket après chaque vente
               </span>
             </label>
           </div>
 
           {/* Sécurité PIN */}
-          <div className="pt-3 border-t border-slate-800 space-y-2">
-            <h4 className="font-extrabold text-slate-200 text-xs flex items-center gap-1.5">
+          <div className="pt-3 border-t border-white/10 space-y-2">
+            <h4 className="font-black text-slate-200 text-xs flex items-center gap-1.5 uppercase tracking-wide">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Code PIN de Sécurité (Optionnel)</span>
+              <span>Code PIN de Sécurité</span>
             </h4>
             <p className="text-[11px] text-slate-400">
-              Protégez l'accès aux paramètres et à la clôture de caisse avec un code à 4 chiffres.
+              Modifiez votre code PIN pour protéger les bilans Z et l'inventaire.
             </p>
             <input
               type="password"
@@ -183,15 +183,15 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
               value={newPin}
               onChange={(e) => setNewPin(e.target.value)}
               placeholder="Nouveau code PIN à 4 chiffres..."
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white tracking-widest font-mono focus:outline-none focus:border-amber-500"
+              className="w-full bg-slate-950 border border-white/10 rounded-xl px-3 py-2 text-white tracking-widest font-mono focus:outline-none focus:border-amber-500"
             />
           </div>
 
           {/* Bouton de sauvegarde */}
-          <div className="pt-4">
+          <div className="pt-2">
             <button
               type="submit"
-              className="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs flex items-center justify-center gap-2 transition"
+              className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-xs flex items-center justify-center gap-2 transition active:scale-98 shadow-lg shadow-amber-500/20 cursor-pointer"
             >
               {savedSuccess ? (
                 <>
